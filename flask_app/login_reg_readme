@@ -1,4 +1,4 @@
-This is a loging and registration template. 
+This is a login and registration template. 
 
 need to add server.py file and then install flask and bcrypt 
 

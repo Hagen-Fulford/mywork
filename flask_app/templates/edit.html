@@ -1,0 +1,61 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Cars</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="d-flex justify-content-between align-items-center col-12">
+        <h1 class="text-center">Welcome {{user.first_name}}!!!</h1>
+        <div class="d-flex col-4 justify-content-around">
+            <a href="/dashboard" class="btn btn-warning">Dashboard</a>
+            <a href="/logout" class="btn btn-info">Logout</a>
+
+        </div>
+
+    </nav>
+    <form action="/update/car" method="post" class="col-11 p-4 my-4 text-dark mx-auto">
+        <h2 class="text-warning">Edit Car</h2>
+        {% with messages = get_flashed_messages(category_filter=['car']) %}
+            {% if messages %}
+            <div class="alert alert-danger" role="alert">
+                <p>Something is wrong!</p>
+                    {% for message in messages %}
+                    <p>{{message}}</p>
+                    {% endfor %}
+            </div>
+            {% endif %}
+        {% endwith %}
+        
+        <div class="d-flex justify-content-between col-9">
+            <input type="hidden" name="id" value={{edit.id}}>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="make">Make:</label>
+                    <input type="text" name="make" class="form-control" value="{{edit.make}}">
+                </div>
+                <div class="form-group">
+                    <label for="model">Model:</label>
+                    <input type="text" name="model" class="form-control" value="{{edit.model}}">
+                </div>
+                <div class="form-group">
+                    <label for="year">Year:</label>
+                    <input type="text" name="year" class="form-control" value="{{edit.year}}">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea name="description"  cols="30" rows="5" class="form-control" value={{edit.description}}></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="price">Price:</label>
+                    <input type="text" name="price" class="form-control" value="{{edit.price}}">
+                </div>
+                <input type="submit" value="Submit Changes" class="btn btn-warning">
+            </div>
+            
+        </div>
+    </form>
+</body>
+</html>
